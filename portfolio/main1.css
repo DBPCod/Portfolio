@@ -1,0 +1,92 @@
+/* Cấu hình chung */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f3443, #34e89e);
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+    padding-top: 50px;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #00ffff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+}
+
+/* Layout dự án */
+.projects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Card dự án */
+.project-card {
+    width: 320px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 16px rgba(0, 255, 255, 0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 255, 255, 0.6);
+}
+
+/* Hình ảnh dự án */
+.project-img {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    border-bottom: 4px solid rgba(0, 255, 255, 0.6);
+}
+
+/* Thông tin dự án */
+.project-info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Tự động kéo dài để đồng đều */
+}
+
+/* Đảm bảo phần mô tả có chiều cao tối thiểu */
+.project-info p {
+    font-size: 14px;
+    opacity: 0.9;
+    flex-grow: 1; /* Đẩy nút xuống dưới */
+}
+
+/* Nút xem chi tiết */
+.project-info a {
+    display: inline-block;
+    text-decoration: none;
+    color: #0e202d;
+    background: #00ffff;
+    padding: 10px 15px;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+    margin-top: 10px; /* Giữ khoảng cách với đoạn văn */
+    text-align: center;
+}
+
+.project-info a:hover {
+    background: #00cccc;
+    transform: scale(1.1);
+}

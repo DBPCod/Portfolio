@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="main">
+        <div id="header">
+            <div id="left-header">
+                <span style=" padding-left: 10px;font-family: &quot;Dancing Script&quot;, cursive; font-size: 26px; background: linear-gradient(90deg, rgb(145, 94, 255), rgb(0, 191, 255)) text; -webkit-text-fill-color: transparent;"><a href="">DBPCod</a></span>
+            </div>
+            <div id="right-header">
+                <ul>
+                    <li><a id="link-first" href="#gioithieu">About</a></li>
+                    <li><a href="#container">Skills</a></li>
+                    <li><a href="#projects">Project</a></li>
+                    <li><a href="">CV</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="content">
+            <div id="img">
+                <img src="./anhnen1.jpg" alt="">       
+            </div>
+            <div id="text-content">
+                <h1>Xin chào, Tôi là <span style="color:aqua;">Phong</span></h1>
+                <div style="display: flex; align-items: center;">
+                    <h3 style="font-size: 30px;font-weight: 700; padding-right: 7px;">Tôi</h3>
+                    <h3 id="animation-text">là sinh viên chuyên ngành Công Nghệ Thông Tin</h3>
+                </div>
+               
+                <h4>Chào mừng đến portfolio, hãy xem trên desktop để có sự tương tác tốt nhất!</h4>
+            </div>
+            <div id="gioithieu">
+                <h3>Giới Thiệu</h3>
+                <h1>Tổng quan</h1>
+            </div>
+            <div id="infor">
+                    <div id="left-infor">
+                        <div class="circle">
+                            <img src="anhnen.jpg">
+                        </div>
+                        <div id="btns-link">
+                            <div id="btns-top">
+                                <button id="btn-resume"><a href="">Resume</a></button>
+                                <button id="btn-linked"><a href="">Linkedln</a></button>
+                            </div>
+                            <div id="btn-bottom">
+                                <button id="btn-github"><a href="">GitHub</a></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="right-infor">
+                        <ul class="mt-4 text-secondary text-[17px] max-w-3xl space-y-6 list-none" style="opacity: 1; transform: none;">
+                            <li class="flex items-start" style="opacity: 1; transform: none;">
+                                <span class="mr-4 text-2xl flex-shrink-0">🎓</span>
+                                <span>Tôi là sinh viên năm 3 chuyên ngành Công Nghệ Thông Tin tại Đại học Sài Gòn.</span>
+                            </li>
+                            <li class="flex items-start" style="opacity: 1; transform: none;">
+                                <span class="mr-4 text-2xl flex-shrink-0">📱</span>
+                                <span>Định hướng của tôi là trở thành lập trình viên Mobile, tập trung vào phát triển ứng dụng Android.</span>
+                            </li>
+                            <li class="flex items-start" style="opacity: 1; transform: none;">
+                                <span class="mr-4 text-2xl flex-shrink-0">💡</span>
+                                <span>Tôi luôn tò mò, không ngừng học hỏi và tìm cách cải thiện kỹ năng lập trình mỗi ngày.</span>
+                            </li>
+                            <li class="flex items-start" style="opacity: 1; transform: none;">
+                                <span class="mr-4 text-2xl flex-shrink-0">🚀</span>
+                                <span>Hiện tại, tôi đang học và thực hành với Kotlin, Jetpack Compose và các công nghệ liên quan đến phát triển mobile.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="container">
+               
+                    <h1>Công Nghệ Đã Học</h1>
+                    <div class="grid">
+                        <div class="tech-card"> C++</div>
+                        <div class="tech-card"> Java</div>
+                        <div class="tech-card"> Android Studio</div>
+                        <div class="tech-card"> Html</div>
+                        <div class="tech-card"> Css</div>
+                        <div class="tech-card"> REST API</div>
+                        <div class="tech-card"> Socket</div>
+                        <div class="tech-card"> Java Swing</div>
+                        <div class="tech-card">Javascript</div>
+                    </div>
+            </div>
+            <div id="projects">
+                <h1> Dự Án Tôi Đã Làm</h1>
+                <div class="projects">
+                    <div class="project-card">
+                        <div class="project-img" style="background-image: url('image.png');"></div>
+                        <div class="project-info">
+                            <h2>📚 Ứng Dụng Quản Lý Sách</h2>
+                            <p>Xây dựng ứng dụng quản lý sách bằng Java Swing và MySQL.</p>
+                            <a href="#">🔎 Xem Chi Tiết</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+            <div class="footer-content">
+                <h2>🌟 DBPCod 🌟</h2>
+                <p>Chia sẻ kiến thức, dự án & hành trình lập trình viên của tôi.</p>
+                <div class="footer-links">
+                    <a href="#">🏠 Trang Chủ</a>
+                    <a href="#">📌 Dự Án</a>
+                    <a href="#">📄 CV</a>
+                    <a href="#">📧 Liên Hệ</a>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><img src="github-icon.png" alt="GitHub"></a>
+                    <a href="#"><img src="linkedin-icon.png" alt="LinkedIn"></a>
+                    <a href="#"><img src="email-icon.png" alt="Email"></a>
+                </div>
+                <p class="copyright">© 2025 DBPCod. All Rights Reserved.</p>
+            </div>
+        </footer>
+        
+    </div>
+</body>
+</html>
