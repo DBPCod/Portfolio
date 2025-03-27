@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="css/main.css">
     <title>Document</title>
 </head>
 <body>
@@ -16,15 +16,15 @@
             <div id="right-header">
                 <ul>
                     <li><a id="link-first" href="#gioithieu">About</a></li>
-                    <li><a href="#container">Skills</a></li>
-                    <li><a href="#projects">Project</a></li>
+                    <li><a id ="link-skill" href="#container">Skills</a></li>
+                    <li><a id = "link-projects" href="#projects">Project</a></li>
                     <li><a href="">CV</a></li>
                 </ul>
             </div>
         </div>
         <div id="content">
             <div id="img">
-                <img src="./anhnen1.jpg" alt="">       
+                <img src="img/anhnen1.jpg" alt="">       
             </div>
             <div id="text-content">
                 <h1>Xin chào, Tôi là <span style="color:aqua;">Phong</span></h1>
@@ -42,7 +42,7 @@
             <div id="infor">
                     <div id="left-infor">
                         <div class="circle">
-                            <img src="anhnen.jpg">
+                            <img src="img/anhnen.jpg">
                         </div>
                         <div id="btns-link">
                             <div id="btns-top">
@@ -95,7 +95,7 @@
                 <h1> Dự Án Tôi Đã Làm</h1>
                 <div class="projects">
                     <div class="project-card">
-                        <div class="project-img" style="background-image: url('image.png');"></div>
+                        <div class="project-img" style="background-image: url('img/image.png');"></div>
                         <div class="project-info">
                             <h2>📚 Ứng Dụng Quản Lý Sách</h2>
                             <p>Xây dựng ứng dụng quản lý sách bằng Java Swing và MySQL.</p>
@@ -126,5 +126,7 @@
         </footer>
         
     </div>
+
+    <script src="js/navigation.js"></script>
 </body>
 </html>
