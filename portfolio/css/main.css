@@ -8,6 +8,9 @@
     
 }
 
+html{
+    scroll-behavior: smooth;
+}
 #header
 {
     z-index: 1;
@@ -238,8 +241,9 @@
     align-items: center;
     /* text-align: center; */
     font-family: 'Poppins', sans-serif;
+    margin-top: 100px;
     margin-bottom:60px;
-    height: 500px;
+    height: 700px;
 }
 
 .grid {
@@ -296,10 +300,16 @@
     text-align: center;
     font-size: 40px;
     font-weight: 700;
-    margin: 20px;
+    margin: 50px;
 }
 
 
+#projectss
+{
+    height: 600px;
+    margin-bottom: 120px;
+    scroll-margin-top: 80px;
+}
 
 
 
