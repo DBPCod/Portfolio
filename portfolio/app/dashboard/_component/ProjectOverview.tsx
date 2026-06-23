@@ -1,7 +1,7 @@
 const overview = [
-  { label: "2+ Năm", value: "Kinh nghiệm" },
-  { label: "15+", value: "Dự án" },
-  { label: "100%", value: "Cam kết chất lượng" },
+  { label: "2+ Năm", value: "Thực chiến dự án" },
+  { label: "15+ Dự án", value: "Đã hoàn thành" },
+  { label: "100%", value: "Thao tác trực tiếp" },
 ];
 
 export default function ProjectOverview() {
