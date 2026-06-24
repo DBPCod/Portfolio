@@ -3,7 +3,7 @@ export default function Header() {
     <header className="border-b border-slate-200 bg-white/90 backdrop-blur-xl">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
         <div>
-          <span className="text-lg font-semibold tracking-tight text-slate-950">DevPortfolio</span>
+          <span className="text-lg font-semibold tracking-tight text-slate-950">DBPCod</span>
         </div>
         <nav className="hidden items-center gap-8 text-sm font-medium text-slate-600 md:flex">
           <a href="#" className="transition hover:text-slate-950">Dịch vụ</a>
