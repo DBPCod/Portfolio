@@ -1,11 +1,11 @@
-import Contact from "./_component/Contact";
-import FeaturedProjects from "./_component/FeaturedProjects";
-import Footer from "./_component/Footer";
-import Header from "./_component/Header";
-import Hero from "./_component/Hero";
-import Process from "./_component/Process";
-import ProjectOverview from "./_component/ProjectOverview";
-import Skills from "./_component/Skills";
+import Contact from "./_components/Contact";
+import FeaturedProjects from "./_components/FeaturedProjects";
+import Footer from "./_components/Footer";
+import Header from "./_components/Header";
+import Hero from "./_components/Hero";
+import Process from "./_components/Process";
+import ProjectOverview from "./_components/ProjectOverview";
+import Skills from "./_components/Skills";
 
 export default function DashboardHome() {
   return (
