@@ -18,8 +18,8 @@ export default function DashboardHome() {
         <Skills />
         <Process />
         <Contact />
-        <Footer />
       </div>
+      <Footer />
     </main>
   );
 }
