@@ -38,13 +38,13 @@ export default function FeaturedProjects() {
         {featuredProjects.map((project) => (
           <article
             key={project.title}
-            className="flex h-full flex-col rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+            className="flex h-full flex-col rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-2xl"
           >
             <div className="h-48 min-h-[180px] overflow-hidden rounded-t-3xl bg-slate-100">
               <img
                 src={project.image}
                 alt={project.title}
-                className="h-full w-full object-cover object-center"
+                className="h-full w-full object-cover object-center transition-transform duration-500 hover:scale-105"
               />
             </div>
             <div className="flex flex-1 flex-col gap-5 p-6">
