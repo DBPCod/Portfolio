@@ -78,11 +78,17 @@ export default async function ProjectDetail({
             </div>
             {/* Vùng hiển thị ảnh giao diện chính */}
             <div className="relative aspect-[16/10] bg-slate-50 flex items-center justify-center p-6">
+              <button className="absolute left-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 flex items-center justify-center cursor-pointer text-slate-500">
+                <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4 rotate-180" />
+              </button>
               <img 
                 src={project.mainMockup} 
                 alt={`${project.title} Interface`}
                 className="w-full h-auto object-contain rounded-lg border border-slate-100" 
               />
+              <button className="absolute right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 flex items-center justify-center cursor-pointer text-slate-500">
+                <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4" />
+              </button>
               <span className="absolute bottom-3 right-4 bg-slate-900/10 backdrop-blur-sm text-[10px] font-medium text-slate-500 px-2 py-1 rounded-md">
                 Main Interface Mockup
               </span>
