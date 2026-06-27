@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import { PROJECTS_DATA } from '@/libs/data/projects.data';
+import Header from '@/app/dashboard/_components/Header';
 
 // Component Icon đóng vai trò là dấu mũi tên bên trong các nút điều hướng hoặc slider
 const ArrowIcon = ({ className = "w-4 h-4" }) => (
@@ -21,7 +22,7 @@ export default async function ProjectDetail({
   return (
     // Bọc toàn bộ trang bằng một dải nền xám nhẹ dịu mắt đồng bộ với phần Portfolio chính
     <main className="w-full bg-slate-50 min-h-screen antialiased text-slate-600">
-      
+      <Header></Header>
       {/* SECTION 1: HERO & HEADER DETAILS */}
       <section className="mx-auto max-w-6xl px-6 pt-12 pb-10 md:px-8">
         <h1 className="text-3xl md:text-4xl font-bold text-[#0A192F] tracking-tight">{project.title}</h1>
