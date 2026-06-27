@@ -35,9 +35,6 @@ export default function FeaturedProjects() {
               <img
                 src={project.image}
                 alt={project.title}
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = "/assets/loading.jpg";
-                }}
                 className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
               />
             </div>
