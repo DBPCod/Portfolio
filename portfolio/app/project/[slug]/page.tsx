@@ -45,7 +45,7 @@ export default async function ProjectDetail({
             href={project.links?.live} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#0A192F] text-white font-medium text-xs px-5 py-3 rounded-xl shadow-sm hover:bg-slate-800 transition-all cursor-pointer"
+            className="inline-flex rounded-full items-center gap-2 bg-[#0A192F] text-white font-medium text-xs px-5 py-3 shadow-sm hover:bg-slate-700 transition-all cursor-pointer"
           >
             Xem sản phẩm thực tế
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="w-3.5 h-3.5" />
@@ -54,7 +54,7 @@ export default async function ProjectDetail({
             href={project.links?.source} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#FBFBFD] text-slate-700 border border-[#E6E9F0] font-medium text-xs px-5 py-3 rounded-xl hover:bg-slate-50 transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 bg-[#FBFBFD] text-slate-700 border border-[#E6E9F0] font-medium text-xs px-5 py-3 rounded-full hover:bg-slate-100 transition-all cursor-pointer"
           >
             Mã nguồn dự án
             <FontAwesomeIcon icon={faCode} className="w-3.5 h-3.5" />
