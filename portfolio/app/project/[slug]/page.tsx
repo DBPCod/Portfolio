@@ -1,13 +1,8 @@
 import { notFound } from 'next/navigation';
 import { PROJECTS_DATA } from '@/libs/data/projects.data';
 import Header from '@/app/dashboard/_components/Header';
-
-// Component Icon đóng vai trò là dấu mũi tên bên trong các nút điều hướng hoặc slider
-const ArrowIcon = ({ className = "w-4 h-4" }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className={className}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-  </svg>
-);
+import { faArrowRight, faArrowUpRightFromSquare, faCode } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default async function ProjectDetail({ 
   params 
@@ -30,15 +25,15 @@ export default async function ProjectDetail({
 
         {/* Khối Meta Tags (Vai trò, Thời gian, Khách hàng) */}
         <div className="mt-6 flex flex-wrap gap-3">
-          <div className="bg-slate-100/80 border border-slate-200/60 rounded-xl px-4 py-2 text-xs">
+          <div className="bg-[#EEEDF2] border border-slate-200/60 rounded-xl px-4 py-2 text-xs">
             <span className="block text-slate-400 font-medium uppercase tracking-wider scale-90 origin-left">Vai trò</span>
             <span className="font-semibold text-slate-700 block mt-0.5">{project.meta?.role}</span>
           </div>
-          <div className="bg-slate-100/80 border border-slate-200/60 rounded-xl px-4 py-2 text-xs">
+          <div className="bg-[#EEEDF2] border border-slate-200/60 rounded-xl px-4 py-2 text-xs">
             <span className="block text-slate-400 font-medium uppercase tracking-wider scale-90 origin-left">Thời gian</span>
             <span className="font-semibold text-slate-700 block mt-0.5">{project.meta?.timeline}</span>
           </div>
-          <div className="bg-slate-100/80 border border-slate-200/60 rounded-xl px-4 py-2 text-xs">
+          <div className="bg-[#EEEDF2] border border-slate-200/60 rounded-xl px-4 py-2 text-xs">
             <span className="block text-slate-400 font-medium uppercase tracking-wider scale-90 origin-left">Khách hàng</span>
             <span className="font-semibold text-slate-700 block mt-0.5">{project.meta?.client}</span>
           </div>
@@ -53,7 +48,7 @@ export default async function ProjectDetail({
             className="inline-flex items-center gap-2 bg-[#0A192F] text-white font-medium text-xs px-5 py-3 rounded-xl shadow-sm hover:bg-slate-800 transition-all cursor-pointer"
           >
             Xem sản phẩm thực tế
-            <ArrowIcon className="w-3.5 h-3.5 -rotate-45" />
+            <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="w-3.5 h-3.5" />
           </a>
           <a 
             href={project.links?.source} 
@@ -62,7 +57,7 @@ export default async function ProjectDetail({
             className="inline-flex items-center gap-2 bg-[#FBFBFD] text-slate-700 border border-[#E6E9F0] font-medium text-xs px-5 py-3 rounded-xl hover:bg-slate-50 transition-all cursor-pointer"
           >
             Mã nguồn dự án
-            <span className="text-slate-400 font-mono">&lt; &gt;</span>
+            <FontAwesomeIcon icon={faCode} className="w-3.5 h-3.5" />
           </a>
         </div>
       </section>
@@ -175,10 +170,10 @@ export default async function ProjectDetail({
               
               {/* Nút điều hướng mũi tên trái/phải */}
               <button className="absolute left-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 flex items-center justify-center cursor-pointer text-slate-500">
-                <ArrowIcon className="w-4 h-4 rotate-180" />
+                <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4 rotate-180" />
               </button>
               <button className="absolute right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 flex items-center justify-center cursor-pointer text-slate-500">
-                <ArrowIcon className="w-4 h-4" />
+                <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4" />
               </button>
 
               {/* Nội dung Mock Slide số 1 */}
