@@ -13,6 +13,11 @@ export const PROJECTS_DATA = {
       source: "https://github.com/your-repo"
     },
     mainMockup: "/images/mockups/erp-main.png",
+    screenshots: [
+      "/images/demo-1.jpg",
+      "/images/demo-1.jpg",
+      "/images/demo-1.jpg"
+    ],
     overview: {
       challenge: {
         title: "Bài toán & Thách thức",
@@ -75,6 +80,11 @@ export const PROJECTS_DATA = {
       source: "https://github.com/your-repo/fintech"
     },
     mainMockup: "/images/mockups/fintech-main.png",
+    screenshots: [
+      "/images/demo-1.jpg",
+      "/images/demo-2.jpg",
+      "/images/demo-3.jpg"
+    ],
     overview: {
       challenge: {
         title: "Bài toán & Thách thức",
