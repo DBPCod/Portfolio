@@ -34,6 +34,7 @@ export default function ProjectDetail({
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const intervalRef = useRef<number | null>(null);
   const screenshots = project?.screenshots ?? [];
+  const architectureSlides = project?.assets?.architecture ?? [];
   const slideCount = screenshots.length;
 
   const startAutoSlide = useCallback(() => {
@@ -238,59 +239,110 @@ export default function ProjectDetail({
       </section>
 
       {/* SECTION 4: CÔNG NGHỆ & KIẾN TRÚC HỆ THỐNG */}
-      <section className="mx-auto max-w-6xl px-6 pb-20 md:px-8">
-        <h2 className="text-xl font-bold text-[#0A192F] mb-8">Công nghệ & Kiến trúc hệ thống</h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-          {/* Cột bên trái: Danh sách các tầng Tech Stacks (Chiếm 4/12 cột) */}
-          <div className="md:col-span-4 space-y-4">
-            {Object.entries(project.technologies).map(([layer, techs]) => (
-              <div key={layer} className="bg-[#FBFBFD] border border-slate-100 rounded-xl p-5 shadow-[0_1px_2px_rgba(15,23,42,0.06)]">
-                <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b border-slate-100 pb-2 mb-3">
-                  {layer}
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {techs.map((tech) => (
-                    <span key={tech} className="bg-slate-100 border border-slate-200/40 text-slate-600 rounded-lg px-2.5 py-1 text-xs font-medium">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
+<section className="mx-auto max-w-6xl px-6 pb-20 md:px-8">
+  <h2 className="text-xl font-bold text-[#0A192F] mb-8">Công nghệ & Kiến trúc hệ thống</h2>
+  
+  <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
+    
+    {/* Cột bên trái: Tech Stacks */}
+    <div className="md:col-span-4 space-y-4">
+      {Object.entries(project.technologies).map(([layer, techs]) => (
+        <div
+          key={layer}
+          className={`rounded-xl p-5 shadow-[0_1px_2px_rgba(15,23,42,0.06)] border ${
+            layer === 'frontend'
+              ? 'bg-cyan-50/80 border-cyan-200'
+              : layer === 'backend'
+              ? 'bg-emerald-50/80 border-emerald-200'
+              : 'bg-sky-50/80 border-sky-200'
+          }`}
+        >
+          <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b border-slate-100 pb-2 mb-3">
+            {layer}
+          </h4>
+          <div className="flex flex-wrap gap-2">
+            {techs.map((tech) => (
+              <span
+                key={tech}
+                className="bg-white border border-slate-200/40 text-slate-600 rounded-lg px-2.5 py-1 text-xs font-medium"
+              >
+                {tech}
+              </span>
             ))}
           </div>
+        </div>
+      ))}
+    </div>
 
-          {/* Cột bên phải: Slider Kiến trúc hệ thống (Chiếm 8/12 cột) */}
-          <div className="md:col-span-8 bg-slate-200/70 border border-slate-300/40 rounded-3xl p-4 md:p-6 relative">
-            <div className="bg-[#FBFBFD] rounded-2xl border border-[#E6E9F0] p-6 shadow-md flex flex-col items-center justify-center min-h-[300px] relative text-center">
-              
-              {/* Nút điều hướng mũi tên trái/phải */}
-              <button className="absolute left-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 flex items-center justify-center cursor-pointer text-slate-500">
-                <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4 rotate-180" />
-              </button>
-              <button className="absolute right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 flex items-center justify-center cursor-pointer text-slate-500">
-                <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4" />
-              </button>
+    {/* Cột bên phải: Architecture Slider - Chiều cao khớp với bên trái */}
+    <div className="md:col-span-8 flex flex-col">
+      <div className="flex-1 bg-slate-200/70 border border-slate-300/40 rounded-3xl p-4 md:p-8 flex flex-col">
+        
+        {/* Browser-like frame */}
+        <div className="flex-1 bg-[#FBFBFD] rounded-2xl shadow-[0_1px_2px_rgba(15,23,42,0.06)] border border-[#E6E9F0] overflow-hidden flex flex-col">
+          
+          {/* Browser Top Bar */}
+          <div className="bg-slate-50 border-b border-[#E6E9F0] px-4 py-3 flex items-center gap-2 flex-shrink-0">
+            <div className="flex gap-1.5">
+              <span className="w-3 h-3 rounded-full bg-slate-200" />
+              <span className="w-3 h-3 rounded-full bg-slate-200" />
+              <span className="w-3 h-3 rounded-full bg-slate-200" />
+            </div>
+            <div className="bg-white border border-slate-200 rounded-lg mx-auto w-2/3 h-6" />
+          </div>
 
-              {/* Nội dung Mock Slide số 1 */}
-              <div className="w-12 h-12 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-center mb-4 text-slate-500">
-                🧬
-              </div>
-              <h3 className="text-base font-bold text-slate-900">{project.architectureSlides?.[0]?.title}</h3>
-              <p className="text-sm text-slate-500 max-w-md mt-2 leading-relaxed">
-                {project.architectureSlides?.[0]?.description}
-              </p>
+          {/* Slider Area - Linh hoạt chiều cao */}
+          <div className="relative flex-1 bg-white flex items-center justify-center p-6 min-h-0">
+            
+            {/* Previous Button */}
+            <button
+              type="button"
+              onClick={handlePreviousSlide}
+              className="absolute left-4 z-10 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 flex items-center justify-center cursor-pointer text-slate-500 hover:text-slate-700 transition-all"
+            >
+              <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4 rotate-180" />
+            </button>
 
-              {/* Dấu chấm điều hướng (Pagination Dots) */}
-              <div className="flex gap-1.5 mt-8">
-                <span className="w-1.5 h-1.5 rounded-full bg-slate-800" />
-                <span className="w-1.5 h-1.5 rounded-full bg-slate-300" />
-                <span className="w-1.5 h-1.5 rounded-full bg-slate-300" />
+            {/* Slider Container */}
+            <div className="relative w-full h-full rounded-lg border border-slate-100 overflow-hidden bg-white">
+              <div
+                className="flex h-full transition-transform duration-500 ease-in-out"
+                style={{ transform: `translateX(-${activeSlideIndex * 100}%)` }}
+              >
+                {architectureSlides.map((slide) => (
+                  <div
+                    key={slide.id}
+                    className="min-w-full h-full flex flex-col items-center justify-center p-4"
+                  >
+                    <div className="w-full flex-1 flex items-center justify-center bg-white rounded-lg overflow-hidden border border-slate-50">
+                      <img
+                        src={slide.image}
+                        alt={slide.title}
+                        className="max-h-full max-w-full object-contain"
+                      />
+                    </div>
+                    <div className="mt-6 text-center px-4">
+                      <h3 className="text-base font-bold text-slate-900">{slide.title}</h3>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
+
+            {/* Next Button */}
+            <button
+              type="button"
+              onClick={handleNextSlide}
+              className="absolute right-4 z-10 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 flex items-center justify-center cursor-pointer text-slate-500 hover:text-slate-700 transition-all"
+            >
+              <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4" />
+            </button>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* SECTION 5: BOTTOM CALL TO ACTION BANNER */}
       <section className="w-full bg-[#0A192F] text-white py-12 text-center px-6">
