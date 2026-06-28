@@ -13,6 +13,25 @@ export const PROJECTS_DATA = {
       source: "https://github.com/your-repo"
     },
     mainMockup: "/images/mockups/erp-main.png",
+    assets: {
+      architecture: [
+        {
+          id: "overview",
+          title: "Sơ đồ kiến trúc tổng quan",
+          image: "/images/projects/erp/architecture/overview.png"
+        },
+        {
+          id: "database",
+          title: "Sơ đồ ERD",
+          image: "/images/projects/erp/architecture/erd.png"
+        },
+        {
+          id: "workflow",
+          title: "Sơ đồ luồng hoạt động",
+          image: "/images/projects/erp/architecture/workflow.png"
+        }
+      ]
+    },
     screenshots: [
       "/images/demo-1.jpg",
       "/images/demo-1.jpg",
@@ -80,6 +99,25 @@ export const PROJECTS_DATA = {
       source: "https://github.com/your-repo/fintech"
     },
     mainMockup: "/images/mockups/fintech-main.png",
+    assets: {
+      architecture: [
+        {
+          id: "overview",
+          title: "Sơ đồ kiến trúc tổng quan",
+          image: "/images/projects/fintech/architecture/overview.png"
+        },
+        {
+          id: "database",
+          title: "Sơ đồ ERD",
+          image: "/images/projects/fintech/architecture/erd.png"
+        },
+        {
+          id: "workflow",
+          title: "Sơ đồ luồng hoạt động",
+          image: "/images/projects/fintech/architecture/workflow.png"
+        }
+      ]
+    },
     screenshots: [
       "/images/demo-1.jpg",
       "/images/demo-2.jpg",
