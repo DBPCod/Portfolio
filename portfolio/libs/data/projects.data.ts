@@ -41,7 +41,7 @@ export const PROJECTS_DATA = {
         title: "Kết quả Thực tế",
         description: "Hệ thống mới đã cải thiện đáng kể hiệu suất vận hành và giảm thiểu chi phí bảo trì.",
         metrics: [
-          { label: "THỜI GIAN XỬ LÝ ĐƠN", value: "-45%" },
+          { label: "THỜI GIAN XỬ LÝ ĐƠN", value: "- 45%" },
           { label: "UPTIME HỆ THỐNG", value: "99.9%" }
         ]
       }

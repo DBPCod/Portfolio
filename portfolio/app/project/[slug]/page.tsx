@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { PROJECTS_DATA } from '@/libs/data/projects.data';
 import Header from '@/app/dashboard/_components/Header';
-import { faArrowRight, faArrowUpRightFromSquare, faCode } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faArrowUpRightFromSquare, faCode, faTriangleExclamation, faCompassDrafting, faChartLine } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function ProjectDetail({
@@ -191,7 +191,9 @@ export default function ProjectDetail({
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Cột 1: Bài toán & Thách thức */}
           <div className="bg-[#FBFBFD] border border-slate-100 rounded-2xl p-6 shadow-[0_1px_2px_rgba(15,23,42,0.06)] flex flex-col">
-            <div className="w-8 h-8 rounded-lg bg-red-50 text-red-500 flex items-center justify-center font-bold text-sm mb-4">⚠️</div>
+            <div className="w-12 h-12 rounded-lg bg-red-100/70 border border-red-200/60 text-red-500 flex items-center justify-center font-bold text-sm mb-4">
+              <FontAwesomeIcon icon={faTriangleExclamation} className="w-6 h-6" />
+            </div>
             <h3 className="text-base font-bold text-slate-900 mb-3">{project.overview?.challenge?.title}</h3>
             <ul className="space-y-3 flex-grow">
               {project.overview?.challenge?.points.map((point, index) => (
@@ -204,7 +206,9 @@ export default function ProjectDetail({
 
           {/* Cột 2: Giải pháp kỹ thuật */}
           <div className="bg-[#FBFBFD] border border-slate-100 rounded-2xl p-6 shadow-[0_1px_2px_rgba(15,23,42,0.06)] flex flex-col">
-            <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-sm mb-4">👔</div>
+            <div className="w-12 h-12 rounded-lg bg-blue-100/70 border border-blue-200/60 text-blue-600 flex items-center justify-center font-bold text-sm mb-4">
+              <FontAwesomeIcon icon={faCompassDrafting} className="w-6 h-6" />
+            </div>
             <h3 className="text-base font-bold text-slate-900 mb-3">{project.overview?.solution?.title}</h3>
             <ul className="space-y-3 flex-grow">
               {project.overview?.solution?.points.map((point, index) => (
@@ -217,19 +221,18 @@ export default function ProjectDetail({
 
           {/* Cột 3: Kết quả thực tế */}
           <div className="bg-[#FBFBFD] border border-slate-100 rounded-2xl p-6 shadow-[0_1px_2px_rgba(15,23,42,0.06)] flex flex-col">
-            <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-sm mb-4">📈</div>
-            <h3 className="text-base font-bold text-slate-900 mb-3">{project.overview?.result?.title}</h3>
-            <p className="text-sm text-slate-500 leading-relaxed mb-6">{project.overview?.result?.description}</p>
-            
-            {/* Chỉ số Metrics */}
-            <div className="mt-auto pt-4 border-t border-slate-100 space-y-4">
-              {project.overview?.result?.metrics.map((metric, index) => (
-                <div key={index} className="flex items-baseline gap-2">
-                  <span className="text-2xl font-black text-slate-900 tracking-tight">{metric.value}</span>
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{metric.label}</span>
-                </div>
-              ))}
+            <div className="w-12 h-12 rounded-lg bg-amber-100/70 border border-amber-200/60 text-amber-600 flex items-center justify-center font-bold text-sm mb-4">
+              <FontAwesomeIcon icon={faChartLine} className="w-6 h-6" />
             </div>
+            <h3 className="text-base font-bold text-slate-900 mb-3">{project.overview?.result?.title}</h3>
+            <ul className="space-y-3 flex-grow">
+              {project.overview?.result?.metrics.map((metric, index) => (
+                <li key={index} className="list-disc list-inside gap-3 text-sm text-slate-300 leading-relaxed">
+                  <span className="font-black text-slate-900 tracking-tight">{metric.value}</span>
+                  <span className="text-slate-600">{" " + metric.label}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
