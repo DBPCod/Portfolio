@@ -1,18 +1,85 @@
-import { notFound } from 'next/navigation';
+"use client";
+
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { PROJECTS_DATA } from '@/libs/data/projects.data';
 import Header from '@/app/dashboard/_components/Header';
-import { faArrowRight, faArrowUpRightFromSquare, faCode } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faArrowUpRightFromSquare, faCode, faTriangleExclamation, faCompassDrafting, faChartLine } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default async function ProjectDetail({ 
-  params 
-}: { 
-  params: Promise<{ slug: string }> 
+export default function ProjectDetail({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
 }) {
-  const resolvedParams = await params;
-  const project = PROJECTS_DATA[resolvedParams.slug as keyof typeof PROJECTS_DATA];
-  
-  if (!project) return notFound();
+  const [resolvedSlug, setResolvedSlug] = useState<string | null>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    params.then((resolvedParams) => {
+      if (isMounted) {
+        setResolvedSlug(resolvedParams.slug);
+      }
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [params]);
+
+  const project = resolvedSlug
+    ? PROJECTS_DATA[resolvedSlug as keyof typeof PROJECTS_DATA]
+    : null;
+
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const intervalRef = useRef<number | null>(null);
+  const screenshots = project?.screenshots ?? [];
+  const architectureSlides = project?.assets?.architecture ?? [];
+  const slideCount = screenshots.length;
+
+  const startAutoSlide = useCallback(() => {
+    if (intervalRef.current !== null) {
+      window.clearInterval(intervalRef.current);
+    }
+
+    if (slideCount === 0) {
+      return;
+    }
+
+    intervalRef.current = window.setInterval(() => {
+      setActiveSlideIndex((currentIndex) => (currentIndex + 1) % slideCount);
+    }, 3000);
+  }, [slideCount]);
+
+  useEffect(() => {
+    startAutoSlide();
+
+    return () => {
+      if (intervalRef.current !== null) {
+        window.clearInterval(intervalRef.current);
+      }
+    };
+  }, [startAutoSlide]);
+
+  const handlePreviousSlide = useCallback(() => {
+    if (slideCount === 0) {
+      return;
+    }
+
+    setActiveSlideIndex((currentIndex) => (currentIndex - 1 + slideCount) % slideCount);
+    startAutoSlide();
+  }, [slideCount, startAutoSlide]);
+
+  const handleNextSlide = useCallback(() => {
+    if (slideCount === 0) {
+      return;
+    }
+
+    setActiveSlideIndex((currentIndex) => (currentIndex + 1) % slideCount);
+    startAutoSlide();
+  }, [slideCount, startAutoSlide]);
+
+  if (!project) return null;
 
   return (
     // Bọc toàn bộ trang bằng một dải nền xám nhẹ dịu mắt đồng bộ với phần Portfolio chính
@@ -77,16 +144,37 @@ export default async function ProjectDetail({
               <div className="bg-white border border-slate-200 rounded-lg mx-auto w-2/3 h-6" />
             </div>
             {/* Vùng hiển thị ảnh giao diện chính */}
-            <div className="relative aspect-[16/10] bg-slate-50 flex items-center justify-center p-6">
-              <button className="absolute left-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 flex items-center justify-center cursor-pointer text-slate-500">
+            <div className="relative aspect-[16/10] bg-white flex items-center justify-center p-6">
+              <button
+                type="button"
+                onClick={handlePreviousSlide}
+                className="absolute left-4 z-10 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 flex items-center justify-center cursor-pointer text-slate-500"
+              >
                 <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4 rotate-180" />
               </button>
-              <img 
-                src={project.mainMockup} 
-                alt={`${project.title} Interface`}
-                className="w-full h-auto object-contain rounded-lg border border-slate-100" 
-              />
-              <button className="absolute right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 flex items-center justify-center cursor-pointer text-slate-500">
+
+              <div className="relative w-full h-full rounded-lg border border-slate-100 overflow-hidden bg-white">
+                <div
+                  className="flex h-full transition-transform duration-500 ease-in-out"
+                  style={{ transform: `translateX(-${activeSlideIndex * 100}%)` }}
+                >
+                  {screenshots.map((imageSrc, index) => (
+                    <div key={imageSrc} className="min-w-full h-full flex items-center justify-center">
+                      <img
+                        src={imageSrc}
+                        alt={`${project.title} Screenshot ${index + 1}`}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={handleNextSlide}
+                className="absolute right-4 z-10 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 flex items-center justify-center cursor-pointer text-slate-500"
+              >
                 <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4" />
               </button>
               <span className="absolute bottom-3 right-4 bg-slate-900/10 backdrop-blur-sm text-[10px] font-medium text-slate-500 px-2 py-1 rounded-md">
@@ -104,7 +192,9 @@ export default async function ProjectDetail({
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Cột 1: Bài toán & Thách thức */}
           <div className="bg-[#FBFBFD] border border-slate-100 rounded-2xl p-6 shadow-[0_1px_2px_rgba(15,23,42,0.06)] flex flex-col">
-            <div className="w-8 h-8 rounded-lg bg-red-50 text-red-500 flex items-center justify-center font-bold text-sm mb-4">⚠️</div>
+            <div className="w-12 h-12 rounded-lg bg-red-100/70 border border-red-200/60 text-red-500 flex items-center justify-center font-bold text-sm mb-4">
+              <FontAwesomeIcon icon={faTriangleExclamation} className="w-6 h-6" />
+            </div>
             <h3 className="text-base font-bold text-slate-900 mb-3">{project.overview?.challenge?.title}</h3>
             <ul className="space-y-3 flex-grow">
               {project.overview?.challenge?.points.map((point, index) => (
@@ -117,7 +207,9 @@ export default async function ProjectDetail({
 
           {/* Cột 2: Giải pháp kỹ thuật */}
           <div className="bg-[#FBFBFD] border border-slate-100 rounded-2xl p-6 shadow-[0_1px_2px_rgba(15,23,42,0.06)] flex flex-col">
-            <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-sm mb-4">👔</div>
+            <div className="w-12 h-12 rounded-lg bg-blue-100/70 border border-blue-200/60 text-blue-600 flex items-center justify-center font-bold text-sm mb-4">
+              <FontAwesomeIcon icon={faCompassDrafting} className="w-6 h-6" />
+            </div>
             <h3 className="text-base font-bold text-slate-900 mb-3">{project.overview?.solution?.title}</h3>
             <ul className="space-y-3 flex-grow">
               {project.overview?.solution?.points.map((point, index) => (
@@ -130,19 +222,18 @@ export default async function ProjectDetail({
 
           {/* Cột 3: Kết quả thực tế */}
           <div className="bg-[#FBFBFD] border border-slate-100 rounded-2xl p-6 shadow-[0_1px_2px_rgba(15,23,42,0.06)] flex flex-col">
-            <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-sm mb-4">📈</div>
-            <h3 className="text-base font-bold text-slate-900 mb-3">{project.overview?.result?.title}</h3>
-            <p className="text-sm text-slate-500 leading-relaxed mb-6">{project.overview?.result?.description}</p>
-            
-            {/* Chỉ số Metrics */}
-            <div className="mt-auto pt-4 border-t border-slate-100 space-y-4">
-              {project.overview?.result?.metrics.map((metric, index) => (
-                <div key={index} className="flex items-baseline gap-2">
-                  <span className="text-2xl font-black text-slate-900 tracking-tight">{metric.value}</span>
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{metric.label}</span>
-                </div>
-              ))}
+            <div className="w-12 h-12 rounded-lg bg-amber-100/70 border border-amber-200/60 text-amber-600 flex items-center justify-center font-bold text-sm mb-4">
+              <FontAwesomeIcon icon={faChartLine} className="w-6 h-6" />
             </div>
+            <h3 className="text-base font-bold text-slate-900 mb-3">{project.overview?.result?.title}</h3>
+            <ul className="space-y-3 flex-grow">
+              {project.overview?.result?.metrics.map((metric, index) => (
+                <li key={index} className="list-disc list-inside gap-3 text-sm text-slate-300 leading-relaxed">
+                  <span className="font-black text-slate-900 tracking-tight">{metric.value}</span>
+                  <span className="text-slate-600">{" " + metric.label}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -151,17 +242,30 @@ export default async function ProjectDetail({
       <section className="mx-auto max-w-6xl px-6 pb-20 md:px-8">
         <h2 className="text-xl font-bold text-[#0A192F] mb-8">Công nghệ & Kiến trúc hệ thống</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-          {/* Cột bên trái: Danh sách các tầng Tech Stacks (Chiếm 4/12 cột) */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
+          
+          {/* Cột bên trái: Tech Stacks */}
           <div className="md:col-span-4 space-y-4">
             {Object.entries(project.technologies).map(([layer, techs]) => (
-              <div key={layer} className="bg-[#FBFBFD] border border-slate-100 rounded-xl p-5 shadow-[0_1px_2px_rgba(15,23,42,0.06)]">
-                <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b border-slate-100 pb-2 mb-3">
+              <div
+                key={layer}
+                className={`rounded-xl p-5 shadow-[0_1px_2px_rgba(15,23,42,0.06)] border ${
+                  layer === 'frontend'
+                    ? 'border-l-4 border-slate-800'
+                    : layer === 'backend'
+                    ? 'border-l-4 border-slate-800'
+                    : 'border-l-4 border-slate-800'
+                }`}
+              >
+                <h4 className="text-[10px] font-bold text-slate-900 uppercase tracking-widest border-b border-slate-100 pb-2 mb-3">
                   {layer}
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {techs.map((tech) => (
-                    <span key={tech} className="bg-slate-100 border border-slate-200/40 text-slate-600 rounded-lg px-2.5 py-1 text-xs font-medium">
+                    <span
+                      key={tech}
+                      className="bg-slate-100/80 border border-slate-200/80 text-slate-700 rounded-lg px-2.5 py-1 text-xs font-semibold tracking-wide transition-colors hover:bg-slate-200/50"
+                    >
                       {tech}
                     </span>
                   ))}
@@ -170,32 +274,70 @@ export default async function ProjectDetail({
             ))}
           </div>
 
-          {/* Cột bên phải: Slider Kiến trúc hệ thống (Chiếm 8/12 cột) */}
-          <div className="md:col-span-8 bg-slate-200/70 border border-slate-300/40 rounded-3xl p-4 md:p-6 relative">
-            <div className="bg-[#FBFBFD] rounded-2xl border border-[#E6E9F0] p-6 shadow-md flex flex-col items-center justify-center min-h-[300px] relative text-center">
+          {/* Cột bên phải: Architecture Slider - Chiều cao khớp với bên trái */}
+          <div className="md:col-span-8 flex flex-col">
+            <div className="flex-1 bg-slate-200/70 border border-slate-300/40 rounded-3xl p-4 md:p-8 flex flex-col">
               
-              {/* Nút điều hướng mũi tên trái/phải */}
-              <button className="absolute left-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 flex items-center justify-center cursor-pointer text-slate-500">
-                <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4 rotate-180" />
-              </button>
-              <button className="absolute right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 flex items-center justify-center cursor-pointer text-slate-500">
-                <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4" />
-              </button>
+              {/* Browser-like frame */}
+              <div className="flex-1 bg-[#FBFBFD] rounded-2xl shadow-[0_1px_2px_rgba(15,23,42,0.06)] border border-[#E6E9F0] overflow-hidden flex flex-col">
+                
+                {/* Browser Top Bar */}
+                <div className="bg-slate-50 border-b border-[#E6E9F0] px-4 py-3 flex items-center gap-2 flex-shrink-0">
+                  <div className="flex gap-1.5">
+                    <span className="w-3 h-3 rounded-full bg-slate-200" />
+                    <span className="w-3 h-3 rounded-full bg-slate-200" />
+                    <span className="w-3 h-3 rounded-full bg-slate-200" />
+                  </div>
+                  <div className="bg-white border border-slate-200 rounded-lg mx-auto w-2/3 h-6" />
+                </div>
 
-              {/* Nội dung Mock Slide số 1 */}
-              <div className="w-12 h-12 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-center mb-4 text-slate-500">
-                🧬
-              </div>
-              <h3 className="text-base font-bold text-slate-900">{project.architectureSlides?.[0]?.title}</h3>
-              <p className="text-sm text-slate-500 max-w-md mt-2 leading-relaxed">
-                {project.architectureSlides?.[0]?.description}
-              </p>
+                {/* Slider Area - Linh hoạt chiều cao */}
+                <div className="relative flex-1 bg-white flex items-center justify-center p-6 min-h-0">
+                  
+                  {/* Previous Button */}
+                  <button
+                    type="button"
+                    onClick={handlePreviousSlide}
+                    className="absolute left-4 z-10 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 flex items-center justify-center cursor-pointer text-slate-500 hover:text-slate-700 transition-all"
+                  >
+                    <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4 rotate-180" />
+                  </button>
 
-              {/* Dấu chấm điều hướng (Pagination Dots) */}
-              <div className="flex gap-1.5 mt-8">
-                <span className="w-1.5 h-1.5 rounded-full bg-slate-800" />
-                <span className="w-1.5 h-1.5 rounded-full bg-slate-300" />
-                <span className="w-1.5 h-1.5 rounded-full bg-slate-300" />
+                  {/* Slider Container */}
+                  <div className="relative w-full h-full rounded-lg border border-slate-100 overflow-hidden bg-white">
+                    <div
+                      className="flex h-full transition-transform duration-500 ease-in-out"
+                      style={{ transform: `translateX(-${activeSlideIndex * 100}%)` }}
+                    >
+                      {architectureSlides.map((slide) => (
+                        <div
+                          key={slide.id}
+                          className="min-w-full h-full flex flex-col items-center justify-center p-4"
+                        >
+                          <div className="w-full flex-1 flex items-center justify-center bg-white rounded-lg overflow-hidden border border-slate-50">
+                            <img
+                              src={slide.image}
+                              alt={slide.title}
+                              className="max-h-full max-w-full object-contain"
+                            />
+                          </div>
+                          <div className="mt-6 text-center px-4">
+                            <h3 className="text-base font-bold text-slate-900">{slide.title}</h3>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Next Button */}
+                  <button
+                    type="button"
+                    onClick={handleNextSlide}
+                    className="absolute right-4 z-10 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 flex items-center justify-center cursor-pointer text-slate-500 hover:text-slate-700 transition-all"
+                  >
+                    <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
