@@ -177,9 +177,6 @@ export default function ProjectDetail({
               >
                 <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4" />
               </button>
-              <span className="absolute bottom-3 right-4 bg-slate-900/10 backdrop-blur-sm text-[10px] font-medium text-slate-500 px-2 py-1 rounded-md">
-                Main Interface Mockup
-              </span>
             </div>
           </div>
         </div>
