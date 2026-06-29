@@ -38,6 +38,7 @@ export default function ProjectOverview({ items }: ProjectOverviewProps) {
 
   return (
     <motion.section
+      id="projectOverview"
       ref={ref}
       className="mt-12 grid gap-6 md:grid-cols-3"
       initial="hidden"
