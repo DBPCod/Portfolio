@@ -5,6 +5,7 @@ import { PROJECTS_DATA } from '@/libs/data/projects.data';
 import Header from '@/app/dashboard/_components/Header';
 import { faArrowRight, faArrowUpRightFromSquare, faCode, faTriangleExclamation, faCompassDrafting, faChartLine } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ProjectHero from '@/libs/components/ProjectHero/ProjectHero';
 
 export default function ProjectDetail({
   params,
@@ -129,48 +130,7 @@ export default function ProjectDetail({
     <main className="w-full bg-slate-50 min-h-screen antialiased text-slate-600">
       <Header></Header>
       {/* SECTION 1: HERO & HEADER DETAILS */}
-      <section className="mx-auto max-w-6xl px-6 pt-12 pb-10 md:px-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-[#0A192F] tracking-tight">{project.title}</h1>
-        <p className="mt-2 text-base text-slate-500 font-medium">{project.subtitle}</p>
-
-        {/* Khối Meta Tags (Vai trò, Thời gian, Khách hàng) */}
-        <div className="mt-6 flex flex-wrap gap-3">
-          <div className="bg-[#EEEDF2] border border-slate-200/60 rounded-xl px-4 py-2 text-xs">
-            <span className="block text-slate-400 font-medium uppercase tracking-wider scale-90 origin-left">Vai trò</span>
-            <span className="font-semibold text-slate-700 block mt-0.5">{project.meta?.role}</span>
-          </div>
-          <div className="bg-[#EEEDF2] border border-slate-200/60 rounded-xl px-4 py-2 text-xs">
-            <span className="block text-slate-400 font-medium uppercase tracking-wider scale-90 origin-left">Thời gian</span>
-            <span className="font-semibold text-slate-700 block mt-0.5">{project.meta?.timeline}</span>
-          </div>
-          <div className="bg-[#EEEDF2] border border-slate-200/60 rounded-xl px-4 py-2 text-xs">
-            <span className="block text-slate-400 font-medium uppercase tracking-wider scale-90 origin-left">Khách hàng</span>
-            <span className="font-semibold text-slate-700 block mt-0.5">{project.meta?.client}</span>
-          </div>
-        </div>
-
-        {/* Cụm nút Call to Action (CTA) */}
-        <div className="mt-8 flex flex-wrap gap-4">
-          <a
-            href={project.links?.live}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex rounded-full items-center gap-2 bg-[#0A192F] text-white font-medium text-xs px-5 py-3 shadow-sm hover:bg-slate-700 transition-all cursor-pointer"
-          >
-            Xem sản phẩm thực tế
-            <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="w-3.5 h-3.5" />
-          </a>
-          <a
-            href={project.links?.source}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#FBFBFD] text-slate-700 border border-[#E6E9F0] font-medium text-xs px-5 py-3 rounded-full hover:bg-slate-100 transition-all cursor-pointer"
-          >
-            Mã nguồn dự án
-            <FontAwesomeIcon icon={faCode} className="w-3.5 h-3.5" />
-          </a>
-        </div>
-      </section>
+      <ProjectHero project={project} />
 
       {/* SECTION 2: BROWSER INTERFACE MOCKUP */}
       <section className="mx-auto max-w-6xl px-6 md:px-8">
