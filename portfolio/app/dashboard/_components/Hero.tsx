@@ -11,7 +11,7 @@ export default function Hero() {
         </a>
       }
       secondaryCta={
-        <a href="#projects" className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:border-slate-400">
+        <a href="#contact" className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:border-slate-400">
           Tư vấn miễn phí
         </a>
       }
