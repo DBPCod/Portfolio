@@ -13,6 +13,7 @@ export default function Footer() {
           <a href="https://github.com/DBPCod" className="hover:text-white transition-colors">Github</a>
           <a href="https://www.linkedin.com/in/phong-đinh-bá-8a3280292" className="hover:text-white transition-colors">LinkedIn</a>
           <a href="https://zalo.me/0932788919" className="hover:text-white transition-colors">Zalo</a>
+          <a href="/assets/cv/DinhBaPhong_CV.pdf" className="hover:text-white transition-colors">CV</a>
         </div>
 
       </div>
