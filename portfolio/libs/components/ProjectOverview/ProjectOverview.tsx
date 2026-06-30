@@ -58,7 +58,7 @@ export default function ProjectOverview({ items }: ProjectOverviewProps) {
           </p>
           <p className="mt-3 text-sm text-slate-600">
             {item.label && <span>{item.label}</span>}
-            {item.label && item.value ? " • " : ""}
+            {item.label && item.value ? " " : ""}
             {item.value}
           </p>
         </motion.div>

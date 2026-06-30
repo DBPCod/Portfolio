@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="flex gap-6 text-sm text-slate-400 order-1 md:order-2">
           <a href="https://github.com/DBPCod" className="hover:text-white transition-colors">Github</a>
           <a href="https://www.linkedin.com/in/phong-đinh-bá-8a3280292" className="hover:text-white transition-colors">LinkedIn</a>
-          <a href="#contact" className="hover:text-white transition-colors">Zalo</a>
+          <a href="https://zalo.me/0932788919" className="hover:text-white transition-colors">Zalo</a>
         </div>
 
       </div>
