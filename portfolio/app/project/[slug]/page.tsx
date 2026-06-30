@@ -7,6 +7,7 @@ import { faArrowRight, faArrowUpRightFromSquare, faCode, faTriangleExclamation, 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ProjectHero from '@/libs/components/ProjectHero/ProjectHero';
 import ProjectOverviewCards from '@/libs/components/ProjectOverviewCards/ProjectOverviewCards';
+import ProjectTechTags from '@/libs/components/ProjectTechTags/ProjectTechTags';
 
 export default function ProjectDetail({
   params,
@@ -194,33 +195,7 @@ export default function ProjectDetail({
         <h2 className="text-xl font-bold text-[#0A192F] mb-8">Công nghệ & Kiến trúc hệ thống</h2>
 
         {/* Nhóm Tech Stacks dàn ngang thành 3 cột đều nhau */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          {Object.entries(project.technologies).map(([layer, techs]) => (
-            <div
-              key={layer}
-              className={`rounded-xl p-5 shadow-[0_1px_2px_rgba(15,23,42,0.06)] border ${layer === 'frontend'
-                ? 'border-l-4 border-slate-800'
-                : layer === 'backend'
-                  ? 'border-l-4 border-slate-800'
-                  : 'border-l-4 border-slate-800'
-                }`}
-            >
-              <h4 className="text-[10px] font-bold text-slate-900 uppercase tracking-widest border-b border-slate-100 pb-2 mb-3">
-                {layer}
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {techs.map((tech) => (
-                  <span
-                    key={tech}
-                    className="bg-slate-100/80 border border-slate-200/80 text-slate-700 rounded-lg px-2.5 py-1 text-xs font-semibold tracking-wide transition-colors hover:bg-slate-200/50"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+        <ProjectTechTags technologies={project.technologies} />
 
         {/* Khung Slider chiếm 100% chiều rộng phía dưới */}
         <div className="w-full bg-slate-200/70 border border-slate-300/40 rounded-3xl p-4 md:p-8 flex justify-center items-center">
