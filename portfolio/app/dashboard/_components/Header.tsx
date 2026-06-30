@@ -19,7 +19,7 @@ export default function Header() {
           <a href="#contact" className="transition hover:text-slate-950">Liên hệ</a>
         </nav>
         <a
-          href="#contact"
+          href="/dashboard#contact"
           className="rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800"
         >
           Liên hệ ngay
