@@ -1,24 +1,24 @@
 export const PROJECTS_DATA = {
-  "he-thong-erp-doanh-nghiep": {
-    slug: "he-thong-erp-doanh-nghiep",
-    title: "Hệ thống ERP Doanh nghiệp",
+  "quan-ly-cua-hang": {
+    slug: "quan-ly-cua-hang",
+    title: "Hệ thống quản lý cửa hàng",
     subtitle: "Tối ưu hóa vận hành & Chuỗi cung ứng",
     meta: {
       role: "Lead Fullstack Engineer",
-      timeline: "Q3 2022 - Q2 2023",
-      client: "TechLogistics Corp"
+      timeline: "T10 2025 - T12 2025",
+      client: "Giảng viên Đại Học"
     },
     links: {
       live: "https://example.com",
-      source: "https://github.com/your-repo"
+      source: "https://github.com/DBPCod/DotNET.git"
     },
-    mainMockup: "/images/mockups/erp-main.png",
+    mainMockup: "/assets/img_projects/store_management/UI/img_store_management_1.jpg",
     assets: {
       architecture: [
         {
           id: "overview",
           title: "Sơ đồ kiến trúc tổng quan",
-          image: "/images/projects/erp/architecture/overview.png"
+          image: "/assets/img_projects/store_management/System/kien_truc_he_thong.jpg"
         },
         {
           id: "database",
