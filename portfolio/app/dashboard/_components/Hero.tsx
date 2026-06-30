@@ -6,7 +6,7 @@ export default function Hero() {
       title="Lập trình viên Full-Stack & Tối ưu hiệu suất Web."
       description="Chuyên gia kiến trúc phần mềm, tập trung vào xây dựng các ứng dụng web tốc độ cao, khả năng mở rộng tốt và tối ưu hóa chi phí hạ tầng cho doanh nghiệp."
       primaryCta={
-        <a href="#contact" className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
+        <a href="#projects" className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
           Xem dự án
         </a>
       }
