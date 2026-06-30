@@ -38,6 +38,7 @@ export default function ProjectOverview({ items }: ProjectOverviewProps) {
 
   return (
     <motion.section
+      id="projectOverview"
       ref={ref}
       className="mt-12 grid gap-6 md:grid-cols-3"
       initial="hidden"
@@ -57,7 +58,7 @@ export default function ProjectOverview({ items }: ProjectOverviewProps) {
           </p>
           <p className="mt-3 text-sm text-slate-600">
             {item.label && <span>{item.label}</span>}
-            {item.label && item.value ? " • " : ""}
+            {item.label && item.value ? " " : ""}
             {item.value}
           </p>
         </motion.div>
