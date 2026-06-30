@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ProjectHero from '@/libs/components/ProjectHero/ProjectHero';
 import ProjectOverviewCards from '@/libs/components/ProjectOverviewCards/ProjectOverviewCards';
 import ProjectTechTags from '@/libs/components/ProjectTechTags/ProjectTechTags';
+import ProjectCTA from '@/libs/components/ProjectCTA/ProjectCTA';
 
 export default function ProjectDetail({
   params,
@@ -265,15 +266,7 @@ export default function ProjectDetail({
       </section>
 
       {/* SECTION 5: BOTTOM CALL TO ACTION BANNER */}
-      <section className="w-full bg-[#0A192F] text-white py-12 px-6 flex flex-col items-center text-center">
-        <h2 className="text-lg md:text-xl font-bold tracking-tight">
-          Bạn muốn xây dựng hoặc tối ưu hệ thống tương tự cho sản phẩm của mình?
-        </h2>
-
-        <a href="/dashboard#contact" className="mt-6 inline-block bg-[#00E5FF] hover:bg-cyan-400 text-[#0A192F] text-xs font-bold uppercase tracking-wider px-6 py-3.5 rounded-full transition-all shadow-md cursor-pointer">
-          Nhận tư vấn miễn phí ngay
-        </a>
-      </section>
+      <ProjectCTA />
 
     </main>
   );
