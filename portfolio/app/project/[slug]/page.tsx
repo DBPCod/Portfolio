@@ -32,10 +32,13 @@ export default function ProjectDetail({
     : null;
 
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const [activeArchSlideIndex, setActiveArchSlideIndex] = useState(0);
   const intervalRef = useRef<number | null>(null);
+  const archIntervalRef = useRef<number | null>(null);
   const screenshots = project?.screenshots ?? [];
   const architectureSlides = project?.assets?.architecture ?? [];
   const slideCount = screenshots.length;
+  const archSlideCount = architectureSlides.length;
 
   const startAutoSlide = useCallback(() => {
     if (intervalRef.current !== null) {
@@ -51,6 +54,20 @@ export default function ProjectDetail({
     }, 3000);
   }, [slideCount]);
 
+  const startArchAutoSlide = useCallback(() => {
+    if (archIntervalRef.current !== null) {
+      window.clearInterval(archIntervalRef.current);
+    }
+
+    if (archSlideCount === 0) {
+      return;
+    }
+
+    archIntervalRef.current = window.setInterval(() => {
+      setActiveArchSlideIndex((currentIndex) => (currentIndex + 1) % archSlideCount);
+    }, 3000);
+  }, [archSlideCount]);
+
   useEffect(() => {
     startAutoSlide();
 
@@ -60,6 +77,16 @@ export default function ProjectDetail({
       }
     };
   }, [startAutoSlide]);
+
+  useEffect(() => {
+    startArchAutoSlide();
+
+    return () => {
+      if (archIntervalRef.current !== null) {
+        window.clearInterval(archIntervalRef.current);
+      }
+    };
+  }, [startArchAutoSlide]);
 
   const handlePreviousSlide = useCallback(() => {
     if (slideCount === 0) {
@@ -78,6 +105,22 @@ export default function ProjectDetail({
     setActiveSlideIndex((currentIndex) => (currentIndex + 1) % slideCount);
     startAutoSlide();
   }, [slideCount, startAutoSlide]);
+
+  const handlePreviousArchSlide = useCallback(() => {
+    if (archSlideCount === 0) {
+      return;
+    }
+    setActiveArchSlideIndex((currentIndex) => (currentIndex - 1 + archSlideCount) % archSlideCount);
+    startArchAutoSlide();
+  }, [archSlideCount, startArchAutoSlide]);
+
+  const handleNextArchSlide = useCallback(() => {
+    if (archSlideCount === 0) {
+      return;
+    }
+    setActiveArchSlideIndex((currentIndex) => (currentIndex + 1) % archSlideCount);
+    startArchAutoSlide();
+  }, [archSlideCount, startArchAutoSlide]);
 
   if (!project) return null;
 
@@ -290,7 +333,7 @@ export default function ProjectDetail({
               {/* Previous Button */}
               <button
                 type="button"
-                onClick={handlePreviousSlide}
+                onClick={handlePreviousArchSlide}
                 className="absolute left-4 z-10 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 flex items-center justify-center cursor-pointer text-slate-500 hover:text-slate-700 transition-all"
               >
                 <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4 rotate-180" />
@@ -300,7 +343,7 @@ export default function ProjectDetail({
               <div className="relative w-full h-full rounded-lg border border-slate-100 overflow-hidden bg-white">
                 <div
                   className="flex h-full transition-transform duration-500 ease-in-out"
-                  style={{ transform: `translateX(-${activeSlideIndex * 100}%)` }}
+                  style={{ transform: `translateX(-${activeArchSlideIndex * 100}%)` }}
                 >
                   {architectureSlides.map((slide) => (
                     <div
@@ -325,7 +368,7 @@ export default function ProjectDetail({
               {/* Next Button */}
               <button
                 type="button"
-                onClick={handleNextSlide}
+                onClick={handleNextArchSlide}
                 className="absolute right-4 z-10 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 flex items-center justify-center cursor-pointer text-slate-500 hover:text-slate-700 transition-all"
               >
                 <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4" />
