@@ -14,7 +14,6 @@ export default function Header() {
           <a href="/dashboard#projectOverview" className="transition hover:text-slate-950">Kinh nghiệm</a>
           <a href="/dashboard#skills" className="transition hover:text-slate-950">Kỹ năng</a>
           <a href="/dashboard#process" className="transition hover:text-slate-950">Quy trình</a>
-          {/* <a href="#" className="transition hover:text-slate-950">Đánh giá</a> */}
           <a href="/dashboard#contact" className="transition hover:text-slate-950">Liên hệ</a>
         </nav>
         <a

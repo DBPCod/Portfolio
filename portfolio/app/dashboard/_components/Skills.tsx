@@ -9,13 +9,13 @@ const timelineItems = [
     period: "2024 - Hiện tại",
     role: "Fullstack & Mobile Developer",
     detail:
-      "Xây dựng ứng dụng web và mobile sử dụng Next.js, React Native, Expo, Node.js, .NET, PostgreSQL và MySQL.",
+      "Xây dựng ứng dụng web và mobile sử dụng Next.js, React, React Native, Expo, Node.js, .NET, PostgreSQL và MySQL.",
   },
   {
     period: "2023 - 2024",
-    role: "Android Developer",
+    role: "Full-Stack Developer (Web & Mobile)",
     detail:
-      "Phát triển ứng dụng Android bằng Kotlin và Jetpack Compose theo kiến trúc MVVM.",
+      "Phát triển ứng dụng di động đa nền tảng bằng React Native và hệ thống Website sử dụng React, Blazor.",
   },
   {
     period: "2022 - 2023",
