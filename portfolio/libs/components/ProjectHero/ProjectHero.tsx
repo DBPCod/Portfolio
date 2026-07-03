@@ -9,7 +9,7 @@ import { containerMotion, itemMotion } from "./projectHero.animations";
 export default function ProjectHero({ project }: ProjectHeroProps) {
   return (
     <motion.section
-      className="mx-auto max-w-6xl px-6 pt-12 pb-10 md:px-8"
+      className="mt-18 mx-auto max-w-6xl px-6 pt-12 pb-10 md:px-8"
       initial="hidden"
       animate="visible"
       variants={containerMotion}

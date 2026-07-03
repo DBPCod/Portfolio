@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="border-b border-slate-200 bg-white/90 backdrop-blur-xl">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-xl">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
         <div>
           <Link href="/dashboard">
@@ -11,7 +11,7 @@ export default function Header() {
         </div>
         <nav className="hidden items-center gap-8 text-sm font-medium text-slate-600 md:flex">
           <a href="/dashboard#projects" className="transition hover:text-slate-950">Dự án</a>
-          <a href="/dashboard#projectOverview" className="transition hover:text-slate-950">Kinh nghiệm</a>
+          {/* <a href="/dashboard#projectOverview" className="transition hover:text-slate-950">Kinh nghiệm</a> */}
           <a href="/dashboard#skills" className="transition hover:text-slate-950">Kỹ năng</a>
           <a href="/dashboard#process" className="transition hover:text-slate-950">Quy trình</a>
           <a href="/dashboard#contact" className="transition hover:text-slate-950">Liên hệ</a>
