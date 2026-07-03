@@ -11,7 +11,7 @@ export default function DashboardHome() {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-950">
       <Header />
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 py-10 md:px-8">
+      <div className=" mt-18 mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 py-10 md:px-8">
         <Hero />
         <ProjectOverview />
         <FeaturedProjects />
