@@ -4,7 +4,7 @@ export default function Contact() {
       <div className="flex flex-col gap-8 lg:flex-row lg:items-start">
         <div className="flex flex-col flex-1 gap-6">
           <div>
-            <h3 className="text-3xl font-semibold tracking-tight text-slate-950">Liên hệ & Khởi động dự án</h3>
+            <h3 className="text-xl md:text-3xl font-semibold tracking-tight text-slate-950">Liên hệ & Khởi động dự án</h3>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600">
               Chia sẻ bài toán hoặc ý tưởng của bạn, tôi sẽ phản hồi trong vòng 24 giờ với giải pháp kỹ thuật tối ưu nhất.
             </p>
@@ -37,7 +37,7 @@ export default function Contact() {
         </div>
 
         <div className="w-full rounded-3xl bg-slate-950 p-6 text-white shadow-lg lg:w-[320px]">
-          <p className="text-sm uppercase tracking-[0.35em] text-slate-300">Thông tin liên hệ</p>
+          <p className=" text-xs md:text-sm uppercase tracking-[0.35em] text-slate-300">Thông tin liên hệ</p>
           <div className="mt-6 space-y-5 text-sm leading-6">
             <div>
               <p className="font-semibold text-white">Email</p>
